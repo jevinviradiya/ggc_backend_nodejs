@@ -1,0 +1,5054 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a example NodeJS API project to demonstrate Swagger Documentation",
+      "version": "1.0.0",
+      "title": "GGCommunity Project APIs",
+      "contact": {
+        "email": "shineinfosoft53@gmail.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      }
+    },
+    "schemes": [
+      "https"
+    ],
+    "host": "ggcommunity.onrender.com",
+    "basePath": "/api/v1",
+    "securityDefinitions": {
+      "Authorization": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "authorization",
+        "description": "TOKEN THAT NEED TO BE SET IN HEADER WITH 'Bearer' KEYWORD"
+      }
+    },
+    "paths": {
+      "/admin/login": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Admin login",
+          "description": "Admin login",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/adminLogin"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Admin login successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/admin/logout": {
+        "post": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Admin logout",
+          "description": "Admin logout",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters":[
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter device Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/adminLogOut"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Admin logout successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/admin/admin-details": {
+        "get": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Admin Details",
+          "description": "Get Admin Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Admin Personal Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/admin/update-admin": { 
+        "put": {
+          "tags": [
+            "Admin"
+          ],
+          "summary": "Update user Details",
+          "description": "Update user Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update.",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateAdminDetails"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User updated"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/create-chapter": {
+        "post": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Create Chapter",
+          "description": "Create Chapter - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "chapter_name",
+              "description": "Enter chapter name",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "country_id",
+              "description": "Enter country id",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "state_id",
+              "description": "Enter state id",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "city_id",
+              "description": "Enter city id",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "postalcode_id",
+              "description": "Enter postalcode id",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "chapter_image",
+              "type": "file",
+              "description": "Select chapter image",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ],
+              "schema": {
+                "type": "file",
+                "$ref": "#/definitions/createChapter"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "chapter_desc",
+              "description": "Enter Chapter description",
+              "schema": {
+                "$ref": "#/definitions/createChapter"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/all-chapter": {
+        "get": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "All chapter details",
+          "description": "All chapter",
+          "produces": [
+            "application/json"
+          ],
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Chapter Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Chapter Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/chapter-by-id/{chapterId}": {
+        "get": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Chapter Details",
+          "description": "Get Chapter Details",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "chapterId",
+              "description": "Enter chapterId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/chapter-by-pcid/{postalcodeId}": {
+        "get": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Chapter by postalcode Id",
+          "description": "Chapter by postalcode Id",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "postalcodeId",
+              "description": "Enter postalcodeId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/update-chapter-image/{chapterId}": {
+        "put": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Update Chapter Image",
+          "description": "Update Chapter Image",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "chapterId",
+              "description": "Enter chapterId Id",
+              "required": true
+            },
+            {
+              "in": "formData",
+              "name": "chapter_image",
+              "description": "Upload chapter image",
+              "type": "file",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter image Updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/update/{chapterId}": {
+        "put": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Update Chapter Details ",
+          "description": "Update Chapter Details - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "chapterId",
+              "description": "Enter chapterId Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateChapter"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateChapter"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Details updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/status-update/{chapterId}": {
+        "put": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Update Chapter Status ",
+          "description": "Update Chapter Status - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "chapterId",
+              "description": "Enter chapterId",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateChapterStatus"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateChapterStatus"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Status updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/delete/{chapterId}": {
+        "delete": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Delete Chapter by ChapterId",
+          "description": "Delete Chapter by ChapterId -  Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "ChapterId",
+              "description": "Enter ChapterId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/chapter/download-data":{
+        "get": {
+          "tags": [
+            "Chapter"
+          ],
+          "summary": "Download chapter data",
+          "description": "Download chapter data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Chapter Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Chapter Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "description": "Enter status of chapter ( pending, approved, rejected) ",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/create-request": {
+        "post": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "Create Partner Request",
+          "description": "Create Partner Request",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createPartnerRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/get-all-request": {
+        "get": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "All Partner Request",
+          "description": "All Partner Request - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Partner Request Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Partner Request Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "description": "Enter status of Request Data (pending, approved, rejected)",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Partner Request Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/status-update/{requestId}": {
+        "put": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "Update Partner Request Status ",
+          "description": "Update Chapter Request Status - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "requestId",
+              "description": "Enter requestId",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateRequestStatus"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateRequestStatus"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request Status updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/update/{requestId}": {
+        "put": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "Update Partner Request Details",
+          "description": "Update Partner Request Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "requestId",
+              "description": "Enter request Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createPartnerRequest"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/createPartnerRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Partner request updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/delete/{requestId}": {
+        "delete": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "Delete Request",
+          "description": "Delete Request - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter request id",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Request Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/partner-request/download-data":{
+        "get": {
+          "tags": [
+            "Partner Request"
+          ],
+          "summary": "Download Partner Request Data",
+          "description": "Download Partner Request Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Partner Request Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Partner Request Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "description": "Enter status of Request Data (pending, approved, rejected)",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Partner Request Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/role/create-roles": {
+        "post": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Create Role",
+          "description": "Create Role - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter role",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createRole"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Role created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/role/all-roles": {
+        "get": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "All Role details",
+          "description": "All Role",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Role Status (true/false)",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Role Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/role/update-role/{roleId}": {
+        "put": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Update role by id",
+          "description": "Update role by id",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "roleId",
+              "description": "Enter roleId",
+              "required": false
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "schema":{
+                "$ref": "#/definitions/updateRole"
+              },
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Role Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/role/delete/{roleId}": {
+        "delete": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Delete Role by roleId",
+          "description": "Delete Role by roleId -  Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "roleId",
+              "description": "Enter roleId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Role deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/role/download-data":{
+        "get": {
+          "tags": [
+            "Role"
+          ],
+          "summary": "Download User Roles Data",
+          "description": "Download User Roles Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User Role Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/create-country": {
+        "post": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "Post Country",
+          "description": "Post Country for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter Country details",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createCountry"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Country Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/all-country": {
+        "get": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "All Countries",
+          "description": "All Countries for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter country Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter country Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Country Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/country-by-id/{countryId}": {
+        "get": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "Country by id",
+          "description": "Country by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "countryId",
+              "description": "Enter countryId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Country Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/update-country/{countryId}": {
+        "put": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "Update country by id",
+          "description": "Update country by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "countryId",
+              "description": "Enter countryId",
+              "required": false
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "schema":{
+                "$ref": "#/definitions/updateCountry"
+              },
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Country Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/delete-country/{countryId}": {
+        "delete": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "Delete country by id",
+          "description": "Delete country by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "countryId",
+              "description": "Enter countryId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Country deleted Successfully!"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/country/download-data":{
+        "get": {
+          "tags": [
+            "Country"
+          ],
+          "summary": "Download Country Data",
+          "description": "Download Country Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter country Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter country Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Country Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/create-state": {
+        "post": {
+          "tags": [
+            "State"
+          ],
+          "summary": "Post state",
+          "description": "Post state for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter state details",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createState"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "state Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/all-state": {
+        "get": {
+          "tags": [
+            "State"
+          ],
+          "summary": "All states",
+          "description": "All states for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter state Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter state Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "state Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/state-by-id/{stateId}": {
+        "get": {
+          "tags": [
+            "State"
+          ],
+          "summary": "state by id",
+          "description": "state by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "stateId",
+              "description": "Enter stateId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "state Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/state-by-countryid/{countryId}": {
+        "get": {
+          "tags": [
+            "State"
+          ],
+          "summary": "state by country id",
+          "description": "state by country id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "countryId",
+              "description": "Enter countryId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "States Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/update-state/{stateId}": {
+        "put": {
+          "tags": [
+            "State"
+          ],
+          "summary": "Update state by id",
+          "description": "Update state by id",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "stateId",
+              "description": "Enter stateId",
+              "required": false
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "schema":{
+                "$ref": "#/definitions/updateState"
+              },
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "State Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/delete-state/{stateId}": {
+        "delete": {
+          "tags": [
+            "State"
+          ],
+          "summary": "Delete state by id",
+          "description": "Delete state by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "stateId",
+              "description": "Enter stateId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "state deleted Successfully!"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/state/download-data":{
+        "get": {
+          "tags": [
+            "State"
+          ],
+          "summary": "Download State Data",
+          "description": "Download State Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter state Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter state Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "State Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/create-city": {
+        "post": {
+          "tags": [
+            "City"
+          ],
+          "summary": "Post city",
+          "description": "Post city for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter city details",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createCity"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "city Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/all-city": {
+        "get": {
+          "tags": [
+            "City"
+          ],
+          "summary": "All city",
+          "description": "All city for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter city Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter city Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "city Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/city-by-id/{cityId}": {
+        "get": {
+          "tags": [
+            "City"
+          ],
+          "summary": "city by id",
+          "description": "city by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "cityId",
+              "description": "Enter cityId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "city Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/city-by-stateid/{stateId}": {
+        "get": {
+          "tags": [
+            "City"
+          ],
+          "summary": "city by state id",
+          "description": "city by state id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "stateId",
+              "description": "Enter stateId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "City Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/update-city/{cityId}": {
+        "put": {
+          "tags": [
+            "City"
+          ],
+          "summary": "Update city by id",
+          "description": "Update city by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "cityId",
+              "description": "Enter cityId",
+              "required": false
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "schema":{
+                "$ref": "#/definitions/updateCity"
+              },
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "city Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/delete-city/{cityId}": {
+        "delete": {
+          "tags": [
+            "City"
+          ],
+          "summary": "Delete city by id",
+          "description": "Delete city by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "cityId",
+              "description": "Enter cityId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "city deleted Successfully!"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/city/download-data":{
+        "get": {
+          "tags": [
+            "City"
+          ],
+          "summary": "Download City Data",
+          "description": "Download City Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter city Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter city Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "City Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/create-code": {
+        "post": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "Post postalCode",
+          "description": "Post postalCode for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter postalCode details",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createPostalCode"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "postalCode Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/all-codes": {
+        "get": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "All postalCode",
+          "description": "All postalCode for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter postalcode Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter postalcode Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "PostalCode Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/code-by-cityid/{cityId}": {
+        "get": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "postalCode by id",
+          "description": "postalCode by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "cityId",
+              "description": "Enter cityId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "PostalCode Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/code-by-id/{codeId}": {
+        "get": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "PostalCode by id",
+          "description": "PostalCode by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "codeId",
+              "description": "Enter codeId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Postalcode Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/update-code/{codeId}": {
+        "put": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "Update postalCode by id",
+          "description": "Update postalCode by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "codeId",
+              "description": "Enter codeId",
+              "required": false
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "schema":{
+                "$ref": "#/definitions/updatePostalCode"
+              },
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Postalcode Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/delete-code/{codeId}": {
+        "delete": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "Delete postalCode by id",
+          "description": "Delete postalCode by id for dropdown",
+          "produces": [
+            "application/json"
+          ],
+          "security":[
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "codeId",
+              "description": "Enter codeId",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "postlcode deleted Successfully!"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/postalcode/download-data":{
+        "get": {
+          "tags": [
+            "PostalCode"
+          ],
+          "summary": "Download postalcode Data",
+          "description": "Download postalcode Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter postalcode Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter postalcode Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Postalcode Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/signup": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Sign up",
+          "description": "User Sign up",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/userSignUp"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/verify-otp": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Verify Otp",
+          "description": "Verify Otp",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/verifyOtp"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Otp verified successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/resend-otp": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Resend Otp",
+          "description": "Resend Otp",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/resendOtp"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Otp sent successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/forgot-password": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Forgot Password",
+          "description": "Forgot Password",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/forgotPassword"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Password updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/reset-password": {
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Reset Password",
+          "description": "Reset Password",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/resetPassword"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Password updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/login": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User login",
+          "description": "User login",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/userLogin"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User login successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/logout": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User logout",
+          "description": "User logout",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "schema": {
+            "$ref": "#/definitions/userLogOut"
+          },
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User logout successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/user-details": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Details",
+          "description": "Get User Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User Personal Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/create-user": {
+        "post": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Create User - Admin access",
+          "description": "Create User - Admin access",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "security":[
+            {
+            "Authorization": []
+             }
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "first_name",
+              "description": "Enter first name",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "last_name",
+              "description": "Enter last name",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "birth_date",
+              "description": "Enter birth date",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "address",
+              "description": "Enter address",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "country_id",
+              "description": "Enter country",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "state_id",
+              "description": "Enter state",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "city_id",
+              "description": "Enter city",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "postalcode_id",
+              "description": "Enter pincode",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "gender",
+              "description": "Enter gender",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "email",
+              "description": "Enter email",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "phone_code",
+              "description": "Enter phone code",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "mobile_number",
+              "description": "Enter mobile number",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "role_id",
+              "description": "Enter role id",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "chapter_id",
+              "description": "Enter chapter id",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "social_id",
+              "type":"array",
+              "description": "Enter social ids",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "password",
+              "description": "Enter password",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "confirm_password",
+              "description": "Enter confirm password",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "profile_picture",
+              "type": "file",
+              "description": "Select profile picture",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ],
+              "schema": {
+                "type": "file",
+                "$ref": "#/definitions/createUser"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+     
+      },
+      "user/update-profile-image/{userId}": {
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Update User Image",
+          "description": "Update User Image",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "Enter userId Id",
+              "required": true
+            },
+            {
+              "in": "formData",
+              "name": "profile_picture",
+              "description": "Upload profile picture",
+              "type": "file",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ]
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User Profile Updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/all-users": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Details - Admin access",
+          "description": "Get User Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter user Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter user Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/get-user-by-id/{userId}": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "User Details - Admin access",
+          "description": "Get User Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "Enter userId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User Personal Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/update/{userId}": {
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Update User Details - Admin access",
+          "description": "Update User Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "Enter userId Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateUser"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateUser"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User Details updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/delete/{id}": {
+        "delete": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Delete user by userId - Admin access",
+          "description": "Delete user by userId",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "userId",
+              "description": "Enter userId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/user/download-data":{
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "Download postalcode Data",
+          "description": "Download postalcode Data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter user Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter user Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "User Data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/category/create-category": {
+        "post": {
+          "tags": [
+            "Business Category"
+          ],
+          "summary": "Create Busienss category",
+          "description": "Create Busienss category - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter category",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createCategory"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Busienss Category created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/category/get-all-category": {
+        "get": {
+          "tags": [
+            "Business Category"
+          ],
+          "summary": "All category details",
+          "description": "All category",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter category name for search",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Category Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/category/category-by-id/{categoryId}": {
+        "get": {
+          "tags": [
+            "Business Category"
+          ],
+          "summary": "Get Category by category ID",
+          "description": "Get Category by category ID",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Enter category Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/category/update/{categoryId}": {
+        "put": {
+          "tags": [
+            "Business Category"
+          ],
+          "summary": "Update category Details",
+          "description": "Update category Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Enter category Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateCategory"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateCategory"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Category updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/category/delete/{categoryId}": {
+        "delete": {
+          "tags": [
+            "Business Category"
+          ],
+          "summary": "Delete category by categoryId",
+          "description": "Delete category by categoryId -  Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "categoryId",
+              "description": "Enter categoryId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Category deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/range/create-range": {
+        "post": {
+          "tags": [
+            "Turn Over Range"
+          ],
+          "summary": "Create turn over range",
+          "description": "Create turn over range - Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter range",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createRange"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Turn over range created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/range/get-all-range": {
+        "get": {
+          "tags": [
+            "Turn Over Range"
+          ],
+          "summary": "Range details",
+          "description": "Range Details",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Range Status (true/false)",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Range Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/range/range-by-id/{rangeId}": {
+        "get": {
+          "tags": [
+            "Turn Over Range"
+          ],
+          "summary": "Get range by range ID",
+          "description": "Get range by range ID",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "range",
+              "description": "Enter range Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/range/update/{rangeId}": {
+        "put": {
+          "tags": [
+            "Turn Over Range"
+          ],
+          "summary": "Update range Details",
+          "description": "Update range Details",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "rangeId",
+              "description": "Enter range Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateRange"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateRange"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Range updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/range/delete/{rangeId}": {
+        "delete": {
+          "tags": [
+            "Turn Over Range"
+          ],
+          "summary": "Delete range by rangeId",
+          "description": "Delete range by rangeId -  Community Super Admin, Community Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "range",
+              "description": "Enter range",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Range deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/create-business" : {
+        "post": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Create Business",
+          "description": "Create Business",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "business_name",
+              "description": "Enter business name"
+            },
+            {
+              "in": "formData",
+              "name": "owner_firstname",
+              "description": "Enter Owner first name"
+            },
+            {
+              "in": "formData",
+              "name": "owner_lastname",
+              "description": "Enter Owner last name"
+            },
+            {
+              "in": "formData",
+              "name": "business_logo",
+              "type": "file",
+              "description": "Select business logo",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ]
+            },
+            {
+              "in": "formData",
+              "name": "business_email",
+              "description": "Enter business email"
+            },
+            {
+              "in": "formData",
+              "name": "business_contact",
+              "description": "Enter busienss contact number"
+            },
+            {
+              "in": "formData",
+              "name": "establish_year",
+              "description": "Enter busienss established year"
+            },
+            {
+              "in": "formData",
+              "name": "business_catagory_id",
+              "description": "Enter busienss catagory id"
+            },
+            {
+              "in": "formData",
+              "name": "annual_turnover",
+              "description": "Enter busienss annual turnover"
+            },
+            {
+              "in": "formData",
+              "name": "business_website",
+              "description": "Enter busienss website"
+            },
+            {
+              "in": "formData",
+              "name": "address",
+              "description": "Enter busienss address"
+            },
+            {
+              "in": "formData",
+              "name": "country_id",
+              "description": "Enter country"
+            },
+            {
+              "in": "formData",
+              "name": "state_id",
+              "description": "Enter state"
+            },
+            {
+              "in": "formData",
+              "name": "city_id",
+              "description": "Enter city"
+            },
+            {
+              "in": "formData",
+              "name": "postalcode_id",
+              "description": "Enter pincode"
+            },
+            {
+              "in": "formData",
+              "name": "representative_1",
+              "description": "Enter representative_1 id",
+              "schema": {
+                "$ref": "#/definitions/createUser"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "representative_2",
+              "description": "Enter representative_2 id"
+             
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/all-business" : {
+        "get": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Get All Category - Admin access",
+          "description": "Get All Businesses - Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter business Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter business Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/user-business": {
+        "get": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Get Businesses of User",
+          "description": "Get Business of User",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/business-by-id/{businessId}": {
+        "get": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Get Businesses by Business ID",
+          "description": "Get Businesses by Business ID",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "businessId",
+              "description": "Enter business Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createBusiness"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/update/{businessId}": {
+        "put": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Update Business Details",
+          "description": "Update Business Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "businessId",
+              "description": "Enter business Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateBusiness"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateBusiness"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business Profile updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business/delete/{businessId}": {
+        "delete": {
+          "tags": [
+            "Business"
+          ],
+          "summary": "Delete Business by Business ID",
+          "description": "Delete Business by Business ID",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "businessId",
+              "description": "Enter business Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business-doc/upload": {
+        "post": {
+          "tags": [
+            "Business Document"
+          ],
+          "summary": "Upload Business document",
+          "description": "Upload Business document",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "business_document",
+              "description": "Upload busienss document",
+              "type": "file",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ]
+            },
+            {
+              "in": "formData",
+              "name": "business_id",
+              "description": "Business id",
+              "type": "string",
+              "required":"true"
+            },
+            {
+              "in": "formData",
+              "name": "document_type",
+              "description": "Business document type",
+              "type": "string",
+              "required":"true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business Document uploaded successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business-doc/update/{docId}": {
+        "post": {
+          "tags": [
+            "Business Document"
+          ],
+          "summary": "Update Business document",
+          "description": "Update Business document",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "business_document",
+              "description": "Upload busienss document",
+              "type": "file",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ]
+            },
+            {
+              "in": "formData",
+              "name": "business_id",
+              "description": "Business id",
+              "type": "string",
+              "required":"true"
+            },
+            {
+              "in": "formData",
+              "name": "document_type",
+              "description": "Business document type",
+              "type": "string",
+              "required":"true"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business Document updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business-doc/update-status/{docId}": {
+        "put": {
+          "tags": [
+            "Business Document"
+          ],
+          "summary": "Update Business document status",
+          "description": "Update Business document status",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "docId",
+              "description": "Enter doc Id",
+              "required": true
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, status value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateDoc"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Business Document status updated successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business-doc/by-business-id/{businessId}": {
+        "get": {
+          "tags": [
+            "Business Document"
+          ],
+          "summary": "Get documents by business ID ",
+          "description": "Get documents by business ID ",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "businessId",
+              "description": "Enter business Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/business-doc/delete/{docId}": {
+        "delete": {
+          "tags": [
+            "Business Document"
+          ],
+          "summary": "Delete document by doc ID ",
+          "description": "Delete document by doc ID ",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "docId",
+              "description": "Enter document Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Document deleted successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/membership/create-membership": {
+        "post": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Create Membership  - Admin access", 
+          "description": "Create Membership  - Admin access",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter all required fields value",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/createMembership"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Membership created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/membership/get-all-memberships": {
+        "get": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Get All Membership ",
+          "description": "Get All Membership ",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter membership Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter membership Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "active",
+              "description": "Enter Active status - true/false",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/membership/membership-by-id/{membershipId}": {
+        "get": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Get Membership by Membership ID ",
+          "description": "Get Membershipes by Membership ID ",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "membershipId",
+              "description": "Enter membership Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Available data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/membership/update/{membershipId}": {
+        "put": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Update Membership Details - Admin access",
+          "description": "Update Membership Details - Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "membershipId",
+              "description": "Enter membership Id ",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateMembership"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter, which field's value you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateMembership"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Membership Profile updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/membership/delete/{membershipId}": {
+        "delete": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Delete Membership by Membership ID - Admin access",
+          "description": "Delete Membership by Membership ID - Admin access",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "membershipId",
+              "description": "Enter membership Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateBusiness"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Membership deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/memvership/download-data":{
+        "get": {
+          "tags": [
+            "Membership"
+          ],
+          "summary": "Download membership data",
+          "description": "Download membership data",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Chapter Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Chapter Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Membership data"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/event/create-event": {
+        "post": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "Create Event",
+          "description": "Create Event",
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "security":[
+            {
+            "Authorization": []
+             }
+          ],
+          "parameters": [
+            {
+              "in": "formData",
+              "name": "chapter_id",
+              "description": "Enter chapter Id",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "event_rm",
+              "description": "Enter Event RM Id",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "event_name",
+              "description": "Enter Event name",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "event_type",
+              "description": "Enter Event type",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "venue",
+              "description": "Enter Venue",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "price",
+              "description": "Enter price",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "start_time",
+              "description": "Enter Start time of an Event",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "end_time",
+              "description": "Enter End time of an Event",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "city",
+              "description": "Enter city",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "state",
+              "description": "Enter state",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "country",
+              "description": "Enter country",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "pincode",
+              "description": "Enter pincode",
+              "schema": {
+                "$ref": "#/definitions/createEvent"
+              }
+            },
+            {
+              "in": "formData",
+              "name": "event_image",
+              "type": "file",
+              "description": "Select Event image",
+              "Content": [
+                "image/png",
+                "image/jpg",
+                "image/jpeg"
+              ],
+              "schema": {
+                "type": "file",
+                "$ref": "#/definitions/createEvent"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Event created successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+     
+      },
+      "/event/all-event": {
+        "get": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "All Event details",
+          "description": "All Event ",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "query",
+              "name": "limit",
+              "description": "Enter Chapter Data limit",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "page",
+              "description": "Enter Chapter Data page number",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "search",
+              "description": "Enter field for search",
+              "required": false
+            },
+            {
+              "in": "query",
+              "name": "status",
+              "description": "Enter status of an event ( pending, cancelled, completed, rescheduled ) ",
+              "required": false
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Chapter Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/event/event-by-id/{eventId}": {
+        "get": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "Event Details ",
+          "description": "Event Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "eventId",
+              "description": "Enter event Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Event Details"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/event/update/{eventId}": {
+        "put": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "Update Event Details ",
+          "description": "Update Event Details",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "eventId",
+              "description": "Enter event Id",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/updateEvent"
+              }
+            },
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Enter field's value which you want to update",
+              "required": false,
+              "schema": {
+                "$ref": "#/definitions/updateEvent"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Event Details updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/event/cancel-event/{eventId}": {
+        "put": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "Cancel Event",
+          "description": "Cancel Event",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "eventId",
+              "description": "Enter event Id",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Event cancelled updated Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      },
+      "/event/delete/{eventId}": {
+        "delete": {
+          "tags": [
+            "Event"
+          ],
+          "summary": "Delete eventId by eventId - Admin access",
+          "description": "Delete eventId by eventId",
+          "security": [
+            {
+              "Authorization": []
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "parameters": [
+            {
+              "in": "path",
+              "name": "eventId",
+              "description": "Enter eventId",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User deleted Successfully"
+            },
+            "400": {
+              "description": "Invalid status value"
+            }
+          }
+        }
+      }
+      
+    },
+    "definitions": {
+      "adminLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string"
+          },
+          "device_id": {
+            "type": "string"
+          }
+        }
+      },
+      "adminLogOut": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string"
+          }
+        }
+      },
+      "updateAdminDetails": {
+        "type": "object",
+        "properties": {
+          "mobile_number": {
+            "type": "number"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "createSubAdmin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "number"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "role_type": {
+            "type": "string",
+            "example": "Community Member/ Community Creator/Community Head/ Community Super Head/ Community Admin/ Cmmunity Super Admin"
+          },
+          "password": {
+            "type": "string"
+          },
+          "confirm_password": {
+            "type": "string"
+          }
+        }
+      },
+      "createUser": {
+        "type": "object",
+        "properties": {
+          "first_name" : {
+            "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string",
+          "format":"date"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city_id": {
+          "type": "string"
+        },
+        "state_id": {
+          "type": "string"
+        },
+        "postalcode_id": {
+          "type": "number"
+        },
+        "country_id": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+          "email": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "number"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "role_id" : {
+            "type": "string"
+          },
+          "chapter_id" : {
+            "type": "string"
+          },
+          "social_id" : {
+            "type": "array"
+          },
+          "password": {
+            "type": "string"
+          },
+          "confirm_password": {
+            "type": "string"
+          },
+          "profile_picture": {
+            "type": "string"
+          }
+        }
+      },
+      "updateUser": {
+        "type": "object",
+        "properties": {
+          "first_name" : {
+            "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "birth_date": {
+          "type": "string",
+          "format":"date"
+        },
+        "address": {
+          "type": "string"
+        },
+        "city_id": {
+          "type": "string"
+        },
+        "state_id": {
+          "type": "string"
+        },
+        "postalcode_id": {
+          "type": "string"
+        },
+        "country_id": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+          "email": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "number"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "role_id" : {
+            "type": "string"
+          },
+          "chapter_id" : {
+            "type": "string"
+          },
+          "social_id" : {
+            "type": "array"
+          }
+        }
+      },
+      "verifyOtp": {
+        "type": "object",
+        "properties": {
+          "mobile_number": {
+            "type": "number"
+          },
+          "otp": {
+            "type": "number"
+          },
+          "device_id": {
+            "type" : "string"
+          }
+        }
+      },
+      "resendOtp": {
+        "type": "object",
+        "properties": {
+          "mobile_number": {
+            "type": "number"
+          }
+        }
+      },
+      "forgotPassword": {
+        "type": "object",
+        "properties": {
+          "mobile_number": {
+            "type": "number"
+          }, 
+          "password": {
+            "type": "string"
+          },
+          "confirm_password": {
+            "type": "string"
+          }
+        }
+      },
+      "resetPassword": {
+        "type": "object",
+        "properties": {
+          "mobile_number": {
+            "type": "number"
+          }, 
+          "password": {
+            "type": "string"
+          },
+          "confirm_password": {
+            "type": "string"
+          }
+        }
+      },
+      "userSignUp": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "number"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string"
+          },
+          "confirm_password": {
+            "type": "string"
+          }
+        }
+      },
+      "userLogin": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string"
+          },
+          "device_id": {
+            "type": "string"
+          }
+        }
+      },
+      "userLogOut": {
+        "type": "object",
+        "properties": {
+          "device_id": {
+            "type": "string"
+          }
+        }
+      },
+      "createChapter": {
+        "type": "object",
+        "properties": {
+          "chapter_name": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "number"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "postalcode_id": {
+            "type": "string"
+          },
+          "chapter_image": {
+            "type": "string"
+          },
+          "chapter_desc": {
+            "type": "string"
+          },
+          "wallet_id": {
+            "type": "string"
+          }
+        }
+      },
+      "updateChapter": {
+        "type": "object",
+        "properties": {
+          "chapter_name": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "postalcode_id": {
+            "type": "string"
+          },
+          "chapter_desc": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "updateChapterStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "boolean",
+            "example":"approved/rejected/pending"
+          }
+        }
+      },
+      "createRole": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string"
+            }
+          }
+      },
+      "updateRole": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "createCategory": {
+        "type": "object",
+        "properties": {
+          "category_name": {
+            "type": "string"
+          }
+        }
+    },
+      "createPartnerRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone_code": {
+            "type": "number"
+          },
+          "mobile_number": {
+            "type": "number"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "postalcode_id": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "updateRequestStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example":"approved/rejected/pending"
+          }
+        }
+      },
+      "createCountry": {
+        "type": "object",
+        "properties": {
+          "country_name": {
+            "type": "string"
+          }
+        }
+      },
+      "updateCountry": {
+        "type": "object",
+        "properties": {
+          "country_name": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "createState": {
+        "type": "object",
+        "properties": {
+          "state_name": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "string"
+          }
+        }
+      },
+      "updateState": {
+        "type": "object",
+        "properties": {
+          "state_name": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "createCity": {
+        "type": "object",
+        "properties": {
+          "city_name": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          }
+        }
+      },
+      "updateCity": {
+        "type": "object",
+        "properties": {
+          "city_name": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          },
+          "is_active":{
+            "type": "boolean"
+          }
+        }
+      },
+      "createPostalCode": {
+        "type": "object",
+        "properties": {
+          "postalcode": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          }
+        }
+      },
+      "updatePostalCode": {
+        "type": "object",
+        "properties": {
+          "postalcode": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "country_id":{
+            "type": "string"
+          },
+          "is_active":{
+            "type": "boolean"
+          }
+        }
+      },
+      "updateDoc": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "example": "approved/rejected/pending"
+            },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "createEvent": {
+        "type": "object",
+        "properties": {
+          "chapter_id": {
+            "type": "string"
+          },
+          "event_rm": {
+            "type": "string"
+          },
+          "event_name": {
+            "type": "string"
+          },
+          "event_type": {
+            "type": "string"
+          },
+          "venue": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "start_time": {
+            "type": "string",
+            "format":"date"
+          },
+          "end_time": {
+            "type": "string",
+            "format":"date"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "pincode": {
+            "type": "number"
+          },
+          "country": {
+            "type": "string"
+          },
+          "event_image": {
+            "type": "string"
+          }
+        }
+      },
+      "updateEvent": {
+        "type": "object",
+        "properties": {
+        "event_name": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "venue": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "pincode": {
+          "type": "number"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+      },
+      "updateCategory": {
+        "type": "object",
+        "properties": {
+          "category_name": {
+            "type": "string"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "createRange": {
+        "type": "object",
+        "properties": {
+          "range_name": {
+            "type": "string"
+          },
+          "min_value": {
+            "type": "number"
+          },
+          "max_value": {
+            "type": "number"
+          }
+        }
+      },
+      "updateRange": {
+        "type": "object",
+        "properties": {
+          "range_name": {
+            "type": "string"
+          },
+          "min_value": {
+            "type": "number"
+          },
+          "max_value": {
+            "type": "number"
+          },
+          "is_active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "updateBusiness": {
+        "type": "object",
+        "properties": {
+          "business_name": {
+            "type": "string"
+          },
+          "owner_firstname": {
+            "type": "string"
+          },
+          "owner_lastname": {
+            "type": "string"
+          },
+          "business_email": {
+            "type": "string"
+          },
+          "business_contact": {
+            "type": "number"
+          },
+          "establish_year": {
+            "type": "string"
+          },
+          "business_catagory_id": {
+            "type": "string"
+          },
+          "annual_turnover": {
+            "type": "number"
+          },
+          "business_website": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "country_id": {
+            "type": "string"
+          },
+          "state_id": {
+            "type": "string"
+          },
+          "city_id": {
+            "type": "string"
+          },
+          "postalcode_id": {
+            "type": "string"
+          },
+          "representative_1": {
+            "type": "string"
+          },
+          "representative_2": {
+            "type": "string"
+          },
+          "is_active":{
+            "type": "boolean"
+          }
+        }
+      },
+      "createMembership": {
+        "type": "object",
+        "properties": {
+          "membership_name": {
+            "type": "string"
+          },
+          "turn_over_range_id": {
+            "type": "string"
+          },
+          "monthly_pice": {
+            "type": "number"
+          },
+          "yearly_pice": {
+            "type": "number"
+          },
+          "description": {
+            "type": "array",
+            "example": [ "Enterprise features", "more facility"]
+          }
+        }
+      },
+      "updateMembership": {
+        "type": "object",
+        "properties": {
+          "membership_name": {
+            "type": "string"
+          },
+          "turn_over_range_id": {
+            "type": "string"
+          },
+          "monthly_pice": {
+            "type": "number"
+          },
+          "yearly_pice": {
+            "type": "number"
+          },
+          "description": {
+            "type": "array",
+            "example": [ "Enterprise features", "more facility"]
+          },
+          "is_active":{
+            "type":"boolean"
+          }
+        }
+      }
+    }
+  }
